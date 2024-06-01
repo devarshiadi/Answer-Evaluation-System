@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Teachers</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .table-dark {
+            background-color: rgba(0, 0, 0, 0.8); /* Dark background with transparency */
+            border-radius: 10px; /* Rounded border */
+            backdrop-filter: blur(5px); /* Apply a slight blur effect */
+            color: white; /* Text color for better visibility */
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('admin_home') }}">Admin Panel</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('admin_home') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('admin_teachers') }}">Teachers</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('admin_students')}}">Students</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('admin_logout') }}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mt-5">
+        <h2>Admin Teachers</h2>
+        <div class="mb-3">
+            <a href="{{ url_for('add_teacher') }}" class="btn btn-success">Add Teacher</a>
+        </div>
+        <table class="table table-bordered table-dark mt-3"> <!-- Add 'table-dark' class for dark styling -->
+            <thead>
+                <tr>
+                    <th>Teacher ID</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for teacher in teachers %}
+                <tr>
+                    <td>{{ teacher[0] }}</td>
+                    <td>{{ teacher[1] }}</td>
+                    <td>{{ teacher[2] }}</td>
+                    <td>
+                        <a href="{{ url_for('view_teacher_tests', teacher_id=teacher[0]) }}" class="btn btn-info">View Tests</a>
+                        <a href="{{ url_for('update_teacher', teacher_id=teacher[0]) }}" class="btn btn-warning">Update</a>
+                        <form action="{{ url_for('delete_teacher', teacher_id=teacher[0]) }}" method="post" style="display: inline-block;">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('admin_home') }}" class="btn btn-primary">Back to Admin Home</a>
+    </div>
+</body>
+</html>

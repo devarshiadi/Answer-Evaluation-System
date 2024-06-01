@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <!--Page Title-->
+    <title>AES_ai</title>
+
+    <!--Meta Keywords and Description-->
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="images/favicon.ico" title="Favicon"/>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='style.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='namari-color.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='font-awesome.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='animate.css')}}"/>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!--Google Webfonts-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Preloader -->
+<div id="preloader">
+    <div id="status" class="la-ball-triangle-path">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<!--End of Preloader-->
+
+<div class="page-border" data-wow-duration="0.7s" data-wow-delay="0.2s">
+    <div class="top-border wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;"></div>
+    <div class="right-border wow fadeInRight animated" style="visibility: visible; animation-name: fadeInRight;"></div>
+    <div class="bottom-border wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;"></div>
+    <div class="left-border wow fadeInLeft animated" style="visibility: visible; animation-name: fadeInLeft;"></div>
+</div>
+
+<div id="wrapper">
+
+    <header id="banner" class="scrollto clearfix" data-enllax-ratio=".5">
+        <div id="header" class="nav-collapse">
+            <div class="row clearfix">
+                <div class="col-1">
+
+                    <!--Logo-->
+                    <div id="logo">
+
+                        <img src="{{url_for('static',filename="images/logo1animate.gif")}}" id="banner-logo" alt="Landing Page"/>
+                        <img src="{{url_for('static',filename="images/logo1animate.gif")}}" id="navigation-logo" alt="Landing Page"/>
+
+                    </div>
+
+                    <aside>
+                      <ul class="social-icons">
+                        <li>
+                          <a target="_blank" title="Facebook" href="https://www.facebook.com/username">
+                              <i class="fa fa-facebook fa-1x"></i><span>Facebook</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a target="_blank" title="Google+" href="http://google.com/+username">
+                              <i class="fa fa-google-plus fa-1x"></i><span>Google+</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a target="_blank" title="Twitter" href="http://www.github.com/username">
+                              <i class="fa fa-github fa-1x"></i><span>Github</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a target="_blank" title="Instagram" href="http://www.instagram.com/username">
+                              <i class="fa fa-instagram fa-1x"></i><span>Instagram</span>
+                          </a>
+                      </li>
+                      </ul>
+                      <!--End of Social Icons in Header-->
+                  </aside>
+                    <!--Main Navigation-->
+                    <nav id="nav-main">
+                        <ul>
+                            <li>
+                                <a href="{{ url_for('index') }}">Home</a>
+                            </li>
+                            
+                            <li>
+                              <a href="{{ url_for('student_home') }}">Student</a>
+                              
+                          </li>
+                            <li>
+                              <a href="{{ url_for('student_take_test') }}">Take Test</a>
+                          </li>
+                            <li>
+                              <a href="{{ url_for('student_view_score') }}">Check Scores</a>
+                            </li>
+                            
+                        </ul>
+                    </nav>
+                    <!--End of Main Navigation-->
+
+                    <div id="nav-trigger"><span></span></div>
+                    <nav id="nav-mobile"></nav>
+
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="container">
+              <div class="cover">
+                <div class="front">
+                  <img src="https://miro.medium.com/v2/resize:fit:1358/1*GQih-F-GbZrv4ltyu09Olw.gif" alt="">
+                  <div class="text">
+                    <span class="text-1">Every login is a step <br> towards knowledge</span>
+                    <span class="text-2">Let's sign in and explore!</span>
+                  </div>
+                </div>
+              </div>
+              <div class="forms">
+                <div class="form-content">
+                    <div class="login-form">
+                        <div class="title">Login</div>
+                        <form action="#" method="POST">
+                            <div class="input-boxes">
+                                <div class="input-box">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="text" name="username" placeholder="Enter your email" required>
+                                </div>
+                                <div class="input-box">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" name="password" placeholder="Enter your password" required>
+                                </div>
+                                <button type="submit" class="button-64"><span class="text">Login</span></button>
+                            </div>
+                        </form>
+                        {% if error %}
+                        <div class="alert alert-danger mt-3" role="alert">
+                            {{ error }}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+      </div>
+          
+</header>
+</div>
+<!--End of Wrapper-->
+
+
+            
+        
+<!-- Include JavaScript resources -->
+<script src="{{url_for('static',filename="js/jquery.1.8.3.min.js")}}"></script>
+<script src="{{url_for('static',filename="js/featherlight.min.js")}}"></script>
+<script src="{{url_for('static',filename="js/featherlight.gallery.min.js")}}"></script>
+<script src="{{url_for('static',filename="js/jquery.enllax.min.js")}}"></script>
+<script src="{{url_for('static',filename="js/jquery.scrollUp.min.js")}}"></script>
+<script src="{{url_for('static',filename="js/jquery.easing.min.js")}}"></script>
+<script src="{{url_for('static',filename="js/jquery.easing.min.js")}}"></script>
+<script src="{{url_for('static',filename="js/jquery.stickyNavbar.min.js")}}"></script>
+<script src="{{url_for('static',filename="js/jquery.waypoints.min.js")}}"></script>
+<script src="{{url_for('static',filename="js/images-loaded.min.js")}}"></script>
+<script src="{{url_for('static',filename="js/lightbox.min.js")}}"></script>
+<script src="{{url_for('static',filename="js/site.js")}}"></script>
+
+
+</body>
+<style>
+
+
+
+  /* Google Font Link */
+  .button-64 {
+  width: 50px;
+  height: 55px;
+  align-items: center;
+  background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: rgba(254, 254, 255, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  display: flex;
+  font-family: Phantomsans, sans-serif;
+  font-size: 20px;
+  justify-content: center;
+  line-height: 1em;
+  max-width: 100%;
+  min-width: 140px;
+  padding: 3px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.button-64:active,
+.button-64:hover {
+  outline: 0;
+}
+
+.button-64 span {
+  background-color: rgb(148, 148, 152);
+  padding: 16px 24px;
+  border-radius: 6px;
+  width: 100%;
+  height: 100%;
+  transition: 300ms;
+
+}
+
+.button-64:hover span {
+  background: none;
+}
+
+@media (min-width: 768px) {
+  .button-64 {
+    font-size: 24px;
+    min-width: 196px;
+  }
+}  
+
+.card{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  padding: 30px;
+}
+.container{
+  position: relative;
+  max-width: 850px;
+  width: 100%;
+  background: #fff;
+  padding: 40px 30px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  perspective: 2700px;
+}
+.container .cover{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  width: 50%;
+  z-index: 98;
+  transition: all 1s ease;
+  transform-origin: left;
+  transform-style: preserve-3d;
+}
+
+ .container .cover .front{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.container .cover::before,
+.container .cover::after{
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  
+  
+  backdrop-filter: blur(40px);
+  opacity: 0.5;
+  z-index: 12;
+}
+
+.container .cover img{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: 10;
+}
+.container .cover .text{
+  position: absolute;
+  z-index: 130;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.cover .text .text-1,
+.cover .text .text-2{
+  font-size: 26px;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+}
+.cover .text .text-2{
+  font-size: 15px;
+  font-weight: 500;
+}
+.container .forms{
+  height: 100%;
+  width: 100%;
+  background: #fff;
+}
+.container .form-content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.form-content .login-form,
+.form-content .signup-form{
+  width: calc(100% / 2 - 25px);
+}
+.forms .form-content .title{
+  position: relative;
+  font-size: 24px;
+  font-weight: 500;
+  color: #333;
+}
+.forms .form-content .title:before{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 25px;
+  background: #7d2ae8;
+}
+.forms .signup-form  .title:before{
+  width: 20px;
+}
+.forms .form-content .input-boxes{
+  margin-top: 30px;
+}
+.forms .form-content .input-box{
+  display: flex;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  margin: 10px 0;
+  position: relative;
+}
+.form-content .input-box input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 0 30px;
+  font-size: 16px;
+  font-weight: 500;
+  border-bottom: 2px solid rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+.form-content .input-box input:focus,
+.form-content .input-box input:valid{
+  border-color: #7d2ae8;
+}
+.form-content .input-box i{
+  position: absolute;
+  color: #7d2ae8;
+  font-size: 17px;
+}
+.forms .form-content .text{
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+.forms .form-content .text a{
+  text-decoration: none;
+}
+.forms .form-content .text a:hover{
+  text-decoration: underline;
+}
+.forms .form-content .button11{
+  color: #fff;
+  margin-top: 40px;
+}
+.forms .form-content .button11 input{
+  color: #fff;
+  background: #7d2ae8;
+  border-radius: 6px;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+.forms .form-content .button11 input:hover{
+  background: #5b13b9;
+}
+.forms .form-content label{
+  color: #5b13b9;
+  cursor: pointer;
+}
+.forms .form-content label:hover{
+  text-decoration: underline;
+}
+.forms .form-content .login-text{
+  text-align: center;
+  margin-top: 25px;
+}
+.container #flip{
+  display: none;
+}
+@media (max-width: 730px) {
+  .container .cover{
+    display: none;
+  }
+  .form-content .login-form{
+    width: 100%;
+  }
+  .form-content .signup-form{
+    display: none;
+  }
+}</style>
+</html>

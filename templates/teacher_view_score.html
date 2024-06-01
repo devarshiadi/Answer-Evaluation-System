@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher View Scores</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Skeleton Loader CSS */
+        @keyframes loading {
+            40% {
+                background-position: 100% 0;
+            }
+            100% {
+                background-position: 100% 0;
+            }
+        }
+
+        .loading .bar {
+            background-color: #E7E7E7;
+            height: 14px;
+            border-radius: 7px;
+            width: 80%;
+        }
+
+        .loading:after {
+            position: absolute;
+            transform: translateY(-50%);
+            top: 50%;
+            left: 0;
+            content: "";
+            display: block;
+            width: 100%;
+            height: 24px;
+            background-image: linear-gradient(100deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 60%, rgba(255, 255, 255, 0) 80%);
+            background-size: 200px 24px;
+            background-position: -100px 0;
+            background-repeat: no-repeat;
+            animation: loading 1s infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{{ url_for('teacher_home') }}">Teacher Panel</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('teacher_home') }}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('teacher_view_score') }}">Score <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('teacher_logout') }}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Student Scores</h1>
+        <div class="row">
+            {% for student_id, student_data in student_scores.items() %}
+            <div class="col-md-6 mb-4">
+                <div class="card bg-dark text-white"> <!-- Add bg-dark and text-white classes for dark theme -->
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="#" data-toggle="modal" data-target="#studentModal-{{ student_id }}">
+                                {{ student_data.student_username }}
+                            </a>
+                            
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <!-- Modal -->
+<div class="modal fade" id="studentModal-{{ student_id }}" tabindex="-1" role="dialog" aria-labelledby="studentModalLabel-{{ student_id }}" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="studentModalLabel-{{ student_id }}">{{ student_data.student_username }} Scores</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {% for test_name, scores in student_data.tests.items() %}
+                <div class="card bg-dark text-white mb-4">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted" data-toggle="collapse" data-target="#testCollapse-{{ student_id }}-{{ loop.index }}">{{ test_name }}</h6>
+
+<div class="collapse" id="testCollapse-{{ student_id }}-{{ loop.index }}">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Expected Answer</th>
+                <th>Student Answer</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for score in scores %}
+            <tr class="data-row bg-dark text-white">
+                <td>{{ score.question_text }}</td>
+                <td>{{ score.expected_answer }}</td>
+                <td>{{ score.student_answer }}</td>
+                <td>{{ score.score }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="text-right">
+        <strong>Total Score: {{ scores|sum(attribute='score') }}</strong>
+    </div>
+</div>
+
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal -->
+
+            </div>
+            <!-- End Modal -->
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Show actual data and hide loader rows when modal is shown
+            $('.modal').on('shown.bs.modal', function (e) {
+                var modal = $(this);
+                modal.find('.skeleton-row').hide();
+                modal.find('.data-row').show();
+            });
+            
+            // Hide data rows and show loader rows when modal is hidden
+            $('.modal').on('hidden.bs.modal', function (e) {
+                var modal = $(this);
+                modal.find('.skeleton-row').show();
+                modal.find('.data-row').hide();
+            });
+        });
+    </script>
+</body>
+</html>

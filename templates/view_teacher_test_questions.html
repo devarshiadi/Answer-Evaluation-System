@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Test Questions</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .table-dark-glass {
+            background-color: rgba(0, 0, 0, 0.8); /* Dark background with transparency */
+            color: white; /* Text color for better visibility */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Subtle shadow effect */
+        }
+        .card-glass-dark {
+            background-color: rgba(0, 0, 0, 0.8); /* Dark background color with transparency */
+            color: white; /* Text color for better visibility */
+            backdrop-filter: blur(10px); /* Apply a blur effect for a glassy appearance */
+            border-radius: 10px; /* Rounded corners for the card */
+            padding: 20px; /* Add padding for spacing */
+            margin: 20px; /* Add margin for separation */
+        }
+        .table td,
+        .table th {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+        .card {
+          border-radius: .15rem;
+        }
+        .table-scroll {
+          border-radius: .5rem;
+        }
+        thead {
+          top: 0;
+          position: sticky;
+        }
+        .overflow-x-auto {
+          overflow-x: auto;
+        }
+        .overflow-x-auto::-webkit-scrollbar {
+        display: none; /* Hide scrollbar for WebKit browsers */
+    }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{{ url_for('teacher_home') }}">Teacher Panel</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('teacher_home') }}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('teacher_logout') }}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h2>Test Questions</h2>
+        
+        <section class="intro">
+            <div class="bg-image h-100" style="background-color: #f5f7fa;">
+              <div class="mask d-flex align-items-center h-100">
+                <div class="container">
+                  <div class="row justify-content-center">
+                    <div class="col-12">
+                      <div class="card shadow-2-strong">
+                        <div class="card-body p-0">
+                          <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; max-height: 700px;">
+                            <table class="table table-bordered table-dark-glass mt-3">
+                              <thead>
+                                <tr>
+                                  <th>Question ID</th>
+                                  <th>Question Text</th>
+                                  <th>Expected Answer(s)</th>
+                                  <th>Action</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {% if questions %}
+                                  {% for question in questions %}
+                                    <tr>
+                                      <td>{{ question[0] }}</td>
+                                      <td>{{ question[1] }}</td>
+                                      <td>
+                                        <div class="overflow-x-auto" style="width: 700px;">
+                                          <ul class="list-unstyled">
+                                            {% for answer in question_answers[question[0]] %}
+                                              <li>{{ answer[1] }}</li>
+                                            {% endfor %}
+                                          </ul>
+                                        </div>
+                                      </td>
+                                      <td>
+                                        <form method="POST" action="{{ url_for('view_teacher_test_questions', test_id=teacher_id) }}" class="d-inline">
+                                          <input type="hidden" name="question_id" value="{{ question[0] }}">
+                                          <button type="submit" name="delete_question" class="btn btn-danger btn-sm">Delete</button>
+                                        </form>
+                                      </td>
+                                    </tr>
+                                  {% endfor %}
+                                {% else %}
+                                  <tr>
+                                    <td colspan="4">No data available</td>
+                                  </tr>
+                                {% endif %}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+        <div class="card card-glass-dark"> <!-- Add 'card-glass-dark' class for dark glass-like styling -->
+            <form method="POST" action="{{ url_for('view_teacher_test_questions', test_id=teacher_id) }}" class="d-inline">
+                <div class="form-group d-inline">
+                    <h2>Add new questions</h2>
+                    <br/>
+                    <input type="text" class="form-control" name="question_text" placeholder="Enter Question Text" required>
+                    <br/>
+                    <input type="text" class="form-control" name="expected_answer" placeholder="Enter Expected Answer" required>
+                    <br/>
+                    <button type="submit" name="add_question" class="btn btn-success btn-margin">Add Question</button>
+                </div>
+            </form>
+        </div>
+        
+        <a href="{{ url_for('teacher_home') }}" class="btn btn-primary btn-margin">Back to Test List</a>
+        <br/>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+</body>
+</html>

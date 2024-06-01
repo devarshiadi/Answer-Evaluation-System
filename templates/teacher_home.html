@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Home</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{{ url_for('teacher_home') }}">Teacher Panel</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('teacher_home') }}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('teacher_view_score') }}">Score <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('teacher_logout') }}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2 class="mt-5">Welcome, Teacher!</h2>
+        
+        <!-- Add Test Name Form -->
+        <form method="POST" action="{{ url_for('teacher_home') }}" class="mt-4 mb-3">
+            <div class="input-group">
+                <input type="text" name="test_name" class="form-control" placeholder="Enter Test Name" required>
+                <div class="input-group-append">
+                    <button type="submit" name="add_test_name" class="btn btn-primary">Add Test</button>
+                </div>
+            </div>
+            
+        </form>
+
+        <!-- Tests List -->
+        <h3 class="mt-4">Your Tests:</h3>
+        
+<ul class="list-group bg-dark"> <!-- Add bg-dark class for dark background -->
+    {% for test in tests %}
+        <li class="list-group-item d-flex justify-content-between align-items-center bg-dark text-white"> <!-- Add bg-dark and text-white classes for dark theme -->
+            <a href="{{ url_for('view_teacher_test_questions', test_id=test[0]) }}" class="text-white">{{ test[1] }}</a> <!-- Add text-white class for light text -->
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editTestModal{{ test[0] }}">Edit</button>
+                <form method="POST" action="{{ url_for('teacher_home') }}" class="ml-1">
+                    <input type="hidden" name="test_id" value="{{ test[0] }}">
+                    <button type="submit" name="delete_test_name" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </li>
+
+        <!-- Edit Test Name Modal -->
+        <div class="modal fade" id="editTestModal{{ test[0] }}" tabindex="-1" role="dialog" aria-labelledby="editTestModalLabel{{ test[0] }}" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dark"> <!-- Add modal-dark class for dark theme -->
+                <div class="modal-content bg-dark text-white"> <!-- Add bg-dark and text-white classes for dark theme -->
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editTestModalLabel{{ test[0] }}">Edit Test Name</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{{ url_for('teacher_home') }}">
+                            <input type="hidden" name="test_id" value="{{ test[0] }}">
+                            <div class="form-group">
+                                <input type="text" name="updated_test_name" class="form-control bg-dark text-white" value="{{ test[1] }}" required> <!-- Add bg-dark and text-white classes for dark theme -->
+                            </div>
+                            <button type="submit" name="update_test_name" class="btn btn-primary">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</ul>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

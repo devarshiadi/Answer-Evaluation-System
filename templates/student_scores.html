@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Scores</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <!-- Change navbar-light to navbar-dark and bg-light to bg-dark -->
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('admin_home') }}">Admin Panel</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('admin_home') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('admin_teachers') }}">Teachers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('admin_students') }}">Students</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('admin_logout') }}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2>Student Scores</h2>
+        <div class="row">
+            {% for test_id, test_scores in scores|groupby('test_id') %}
+            <div class="col-md-6 mb-4">
+                <div class="card bg-dark text-light">
+                    <div class="card-header">
+                        <h5 class="card-title">{{ test_scores[0]['test_name'] }}</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            Total Score: {{ test_scores|sum(attribute='score') }}
+                        </p>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-{{ test_id }}">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="modal-{{ test_id }}" tabindex="-1" role="dialog" aria-labelledby="modal-{{ test_id }}-label" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-{{ test_id }}-label">{{ test_scores[0]['test_name'] }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Question</th>
+                                        <th>Expected Answer</th>
+                                        <th>Student Answer</th>
+                                        <th>Score</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for score in test_scores %}
+                                    <tr class="bg-dark text-light">
+                                        <td>{{ score['question_text'] }}</td>
+                                        <td>{{ score['expected_answer'] }}</td>
+                                        <td>{{ score['student_answer'] }}</td>
+                                        <td>{{ score['score'] }}</td>
+                                        <td>
+                                            <form action="{{ url_for('delete_student_score', answer_id=score['answer_id']) }}" method="post">
+                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <a href="{{ url_for('admin_home') }}" class="btn btn-primary">Back to Dashboard</a>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

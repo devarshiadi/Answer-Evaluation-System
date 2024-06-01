@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <!--Page Title-->
+    <title>AES_ai</title>
+
+    <!--Meta Keywords and Description-->
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="images/favicon.ico" title="Favicon"/>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='style.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='namari-color.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='font-awesome.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='animate.css')}}"/>
+
+
+
+    <!--Google Webfonts-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Preloader -->
+<div id="preloader">
+    <div id="status" class="la-ball-triangle-path">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<!--End of Preloader-->
+
+<div class="page-border" data-wow-duration="0.7s" data-wow-delay="0.2s">
+    <div class="top-border wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;"></div>
+    <div class="right-border wow fadeInRight animated" style="visibility: visible; animation-name: fadeInRight;"></div>
+    <div class="bottom-border wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;"></div>
+    <div class="left-border wow fadeInLeft animated" style="visibility: visible; animation-name: fadeInLeft;"></div>
+</div>
+
+<div id="wrapper">
+
+    <header id="banner" class="scrollto clearfix" data-enllax-ratio=".5">
+        <div id="header" class="nav-collapse">
+            <div class="row clearfix">
+                <div class="col-1">
+
+                    <!--Logo-->
+                    <div id="logo">
+
+                        <img src="{{url_for('static',filename="images/logo1animate.gif")}}" id="banner-logo" alt="Landing Page"/>
+                        <img src="{{url_for('static',filename="images/logo1animate.gif")}}" id="navigation-logo" alt="Landing Page"/>
+
+                    </div>
+
+                    <aside>
+                      <ul class="social-icons">
+                        <li>
+                          <a target="_blank" title="Facebook" href="https://www.facebook.com/username">
+                              <i class="fa fa-facebook fa-1x"></i><span>Facebook</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a target="_blank" title="Google+" href="http://google.com/+username">
+                              <i class="fa fa-google-plus fa-1x"></i><span>Google+</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a target="_blank" title="Twitter" href="http://www.github.com/username">
+                              <i class="fa fa-github fa-1x"></i><span>Github</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a target="_blank" title="Instagram" href="http://www.instagram.com/username">
+                              <i class="fa fa-instagram fa-1x"></i><span>Instagram</span>
+                          </a>
+                      </li>
+                      </ul>
+                      <!--End of Social Icons in Header-->
+                  </aside>
+                    <!--Main Navigation-->
+                    <nav id="nav-main">
+                        <ul>
+                            <li>
+                                <a href="#banner">Home</a>
+                            </li>
+                            <li>
+                                <a href="#about">About</a>
+                            </li>
+                            <li>
+                                <a href="#services">Teachnology</a>
+                            </li>
+                            <li>
+                                <a href="#testimonials">Team</a>
+                            </li>
+                            <li>
+                              <a href="{{ url_for('admin_home') }}">Admin</a>
+                          </li>
+                            <li>
+                              <a href="{{ url_for('student_home') }}">Student</a>
+                          </li>
+                            <li>
+                              <a href="{{ url_for('teacher_home') }}">Teacher</a>
+                          </li>
+                        </ul>
+                    </nav>
+                    <!--End of Main Navigation-->
+
+                    <div id="nav-trigger"><span></span></div>
+                    <nav id="nav-mobile"></nav>
+
+                </div>
+            </div>
+        </div><!--End of Header-->
+
+        <!--Banner Content-->
+        <div id="banner-content" class="row clearfix">
+
+            <div class="col-38">
+
+                <div class="section-heading">
+                    <h1>Answer Evaluation System  </h1>
+                    <h2>Upgrade your assessment process with our Answer Evaluation System. Seamlessly evaluate responses with precision and efficiency. Whether it's for educational purposes or professional assessments, our system automates the evaluation process, providing accurate feedback swiftly. Enhance your projects with this versatile tool, available for personal and commercial use.</h2>
+                </div>
+                <!--Call to Action-->
+                <a href="#about" class="button">START CREATING TODAY</a>
+                <!--End Call to Action-->
+
+            </div>
+
+        </div><!--End of Row-->
+    </header>
+
+    <!--Main Content Area-->
+    <main id="content">
+
+        <!--Introduction-->
+        <section id="about" class="introduction scrollto">
+
+            <div class="row clearfix">
+
+                <div class="col-3">
+                    <div class="section-heading">
+                        <h3>SUCCESS</h3>
+                        <h2 class="section-title">How Our Answer Evaluation System Works</h2>
+                        <p class="section-subtitle">Our innovative approach utilizes a combination of teacher's answer module, student module, and our finely tuned AI model to evaluate responses accurately.</p>
+                    </div>
+            
+                </div>
+            
+                <div class="col-2-3">
+            
+                    <!--Icon Block-->
+                    <div class="col-2 icon-block icon-top wow fadeInUp" data-wow-delay="0.1s">
+                        <!--Icon-->
+                        <div class="icon">
+                            <i class="fa fa-html5 fa-2x"></i>
+                        </div>
+                        <!--Icon Block Description-->
+                        <div class="icon-block-description">
+                            <h4>HTML5 &amp; CSS3</h4>
+                            <p>We employ a blend of cutting-edge technologies including HTML, CSS, and JavaScript to create an intuitive user experience.</p>
+                        </div>
+                    </div>
+                    <!--End of Icon Block-->
+            
+                    <!--Icon Block-->
+                    <div class="col-2 icon-block icon-top wow fadeInUp" data-wow-delay="0.3s">
+                        <!--Icon-->
+                        <div class="icon">
+                            <i class="fa fa-bolt fa-2x"></i>
+                        </div>
+                        <!--Icon Block Description-->
+                        <div class="icon-block-description">
+                            <h4>Easy to Use</h4>
+                            <p>Our system is designed with user-friendliness in mind, ensuring effortless navigation and accessibility.</p>
+                        </div>
+                    </div>
+                    <!--End of Icon Block-->
+            
+                    <!--Icon Block-->
+                    <div class="col-2 icon-block icon-top wow fadeInUp" data-wow-delay="0.5s">
+                        <!--Icon-->
+                        <div class="icon">
+                            <i class="fa fa-tablet fa-2x"></i>
+                        </div>
+                        <!--Icon Block Description-->
+                        <div class="icon-block-description">
+                            <h4>Fully Responsive</h4>
+                            <p>Utilizing responsive design principles, our system adapts seamlessly to various devices, providing a consistent experience across platforms.</p>
+                        </div>
+                    </div>
+                    <!--End of Icon Block-->
+            
+                    <!--Icon Block-->
+                    <div class="col-2 icon-block icon-top wow fadeInUp" data-wow-delay="0.7s">
+                        <!--Icon-->
+                        <div class="icon">
+                            <i class="fa fa-code fa-2x"></i>
+                        </div>
+                        <!--Icon Block Description-->
+                        <div class="icon-block-description">
+                            <h4>Powered by Advanced Technologies</h4>
+                            <p>Our system harnesses the power of Flask, Python, machine learning, NLP, Gensim, and BERT to provide sophisticated evaluation capabilities.</p>
+                        </div>
+                    </div>
+                    <!--End of Icon Block-->
+            
+                </div>
+            
+            </div>
+            
+
+        </section>
+        <!--End of Introduction-->
+
+
+       
+
+        <!--Content Section-->
+        <div id="services" class="scrollto clearfix">
+
+            <div class="row no-padding-bottom clearfix">
+        
+        
+                <!--Content Left Side-->
+                <div class="col-3">
+                    <!--Project Information-->
+                    <div class="section-heading">
+                        <h3>PROJECT DETAILS</h3>
+                        <h2 class="section-title">Unlocking the Potential of Answer Evaluation System</h2>
+                        <p class="section-subtitle">Discover the power of automated assessment</p>
+                    </div>
+                    <!-- End of Project Information-->
+        
+                </div>
+                <!--End Content Left Side-->
+        
+                <!--Content of the Right Side-->
+                <div class="col-3">
+                    <div class="section-heading">
+                        <h3>BELIEVING</h3>
+                        <h2 class="section-title">Focusing On What Matters Most</h2>
+                        <p class="section-subtitle">Elevating your priorities with our dedication</p>
+                    </div>
+                    <p>Our Answer Evaluation System revolutionizes traditional assessment methods, offering an efficient and precise way to evaluate responses. With a focus on enhancing learning outcomes and streamlining evaluation processes, we empower educators and learners alike.</p>
+                    <p>
+                        Embrace a future where assessment is not just a measure of knowledge but a catalyst for growth and development. Our commitment to excellence drives us to continually innovate, ensuring our system remains at the forefront of educational technology.
+                    </p>
+                    <!-- Just replace the Video ID "UYJ5IjBRlW8" with the ID of your video on YouTube (Found within the URL) -->
+                    
+                </div>
+                <!--End Content Right Side-->
+        
+                <div class="col-3">
+                    <img src="{{url_for('static',filename="images/logo1animate.gif")}}" alt="Dancer"/>
+                </div>
+        
+            </div>
+        
+        
+        </div>
+        
+        <!--End of Content Section-->
+
+        <!--Testimonials-->
+        <aside id="testimonials" class="scrollto text-center" data-enllax-ratio=".2">
+
+            <div class="row clearfix">
+
+                <div class="section-heading">
+                    <h3>Teams</h3>
+                    <h2 class="section-title">Meet our project Team</h2>
+                </div>
+
+                <!--User Testimonial-->
+                <blockquote class="col-3 testimonial classic">
+                    <img src="{{url_for('static',filename="images/user-images/user-3.jpg")}}" alt="User"/>
+                    <q>Hey im web developer , learning and always reading 🤓📚</q>
+                    <footer>Pratik Pattenshetty</footer>
+                </blockquote>
+                <!-- End of Testimonial-->
+
+                <!--User Testimonial-->
+                <blockquote class="col-3 testimonial classic">
+                    <img src="{{url_for('static',filename="images/user-images/user-3.jpg")}}" alt="User"/>
+                    <q>Hey im web developer , learning and always reading 🤓📚</q>
+                    <footer>Pratik Pattenshetty</footer>
+                </blockquote>
+                <!-- End of Testimonial-->
+
+                <!--User Testimonial-->
+                <blockquote class="col-3 testimonial classic">
+                    <img src="{{url_for('static',filename="images/user-images/user-3.jpg")}}" alt="User"/>
+                    <q>Hey i'm Machine learning / Ai enthusiast working on new gen tech @google</q>
+                    <footer>Aditya Devarshi</footer>
+                </blockquote>
+                <!-- End of Testimonial-->
+
+            </div>
+
+        </aside>
+
+        <!--Pricing Tables-->
+        <section id="pricing" class="secondary-color text-center scrollto clearfix ">
+            <div class="row clearfix">
+
+                <div class="section-heading">
+                    <h3>YOUR CHOICE</h3>
+                    <h2 class="section-title">OUR MODULES</h2>
+                </div>
+
+                <!--Pricing Block-->
+                <div class="pricing-block col-3 wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="pricing-block-content">
+                        <h3>Admin</h3>
+                        <blockquote class="testimonial classic">
+                            <img src="{{ url_for('static', filename='images/banner-images/admin_image.jpg') }}" alt="User"/>
+                        </blockquote>
+                        <a href="{{ url_for('admin_home') }}" class="button">Login as Admin</a>
+                    </div>
+                </div>
+                <!--End Pricing Block-->
+
+                <!--Pricing Block-->
+                <div class="pricing-block featured col-3 wow fadeInUp" data-wow-delay="0.6s">
+                    <div class="pricing-block-content">
+                        <h3>Teacher</h3>
+                        <blockquote class="testimonial classic">
+                            <img src="{{ url_for('static', filename='images/banner-images/teacher_image.jpg') }}" alt="User"/>
+                        </blockquote>
+                        
+                        <a href="{{ url_for('teacher_home') }}" class="button">Login as Teacher</a>
+                    </div>
+                </div>
+                <!--End Pricing Block-->
+
+                <!--Pricing Block-->
+                <div class="pricing-block col-3 wow fadeInUp" data-wow-delay="0.8s">
+                    <div class="pricing-block-content">
+                        <h3>Student</h3>
+                        <blockquote class="testimonial classic">
+                            <img src="{{ url_for('static', filename='images/banner-images/student_image2.gif') }}" alt="User"/>
+                        </blockquote>
+
+                        <a href="{{ url_for('student_home') }}" class="button">Login as Student</a>
+                    </div>
+                </div>
+                <!--End Pricing Block-->
+
+            </div>
+        </section>
+        <!--End of Pricing Tables-->
+
+    </main>
+    <!--End Main Content Area-->
+
+
+    <!--Footer-->
+    <footer id="landing-footer" class="clearfix">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-6">
+                  <p id="copyright">Made with love by <a href="https://adity-ai.web.app/">CURSEOFWTICHER</a></p>
+              </div>
+              <div class="col-md-6">
+                  <ul class="social-icons">
+                      <li>
+                          <a target="_blank" title="Facebook" href="https://www.facebook.com/username">
+                              <i class="fa fa-facebook fa-1x"></i><span>Facebook</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a target="_blank" title="Google+" href="http://google.com/+username">
+                              <i class="fa fa-google-plus fa-1x"></i><span>Google+</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a target="_blank" title="Twitter" href="http://www.github.com/username">
+                              <i class="fa fa-github fa-1x"></i><span>Github</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a target="_blank" title="Instagram" href="http://www.instagram.com/username">
+                              <i class="fa fa-instagram fa-1x"></i><span>Instagram</span>
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </footer>
+    <!--End of Footer-->
+
+</div>
+
+<!-- Include JavaScript resources -->
+<script src="{{url_for('static',filename="js/jquery.1.8.3.min.js")}}"></script>
+<script src="{{url_for('static',filename="js/featherlight.min.js")}}"></script>
+<script src="{{url_for('static',filename="js/featherlight.gallery.min.js")}}"></script>
+<script src="{{url_for('static',filename="js/jquery.enllax.min.js")}}"></script>
+<script src="{{url_for('static',filename="js/jquery.scrollUp.min.js")}}"></script>
+<script src="{{url_for('static',filename="js/jquery.easing.min.js")}}"></script>
+<script src="{{url_for('static',filename="js/jquery.easing.min.js")}}"></script>
+<script src="{{url_for('static',filename="js/jquery.stickyNavbar.min.js")}}"></script>
+<script src="{{url_for('static',filename="js/jquery.waypoints.min.js")}}"></script>
+<script src="{{url_for('static',filename="js/images-loaded.min.js")}}"></script>
+<script src="{{url_for('static',filename="js/lightbox.min.js")}}"></script>
+<script src="{{url_for('static',filename="js/site.js")}}"></script>
+
+
+</body>
+<style>
+  #banner {
+      background: url("{{ url_for('static', filename='images/banner-images/download.gif') }}") no-repeat center top;
+      background-size: cover;
+  }
+
+</style>
+</html>
